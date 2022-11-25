@@ -1,0 +1,16 @@
+{ "rules": [
+  {"includeClasses": "com.azure.**"},
+  {"includeClasses": "com.microsoft.aad.msal4j.**"},
+  {"excludeClasses": "com.azure.spring.**"},
+  {"excludeClasses": "org.**"},
+  {"excludeClasses": "java.**"},
+  {"excludeClasses": "java.lang.*"},
+  {"excludeClasses": "jakarta.**"},
+  {"excludeClasses": "com.fasterxml.**"},
+  {"excludeClasses": "com.fasterxml.jackson.**"},
+  {"excludeClasses": "sun.**"},
+  {"excludeClasses": "ch.qos.logback.**"},
+  {"excludeClasses": "io.netty.**"},
+  {"excludeClasses": "reactor.**"}
+]
+}

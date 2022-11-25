@@ -1,0 +1,70 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.0' apply false
+	id 'org.graalvm.buildtools.native' version '0.9.17'
+//	id 'java'
+}
+
+
+allprojects {
+	group = 'com.example'
+	version = '0.0.1-SNAPSHOT'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven { url 'https://repo.spring.io/milestone' }
+		maven { url 'https://repo.spring.io/snapshot' }
+	}
+}
+
+subprojects {
+	ext {
+		set('springCloudAzureVersion', "6.0.0-beta.4")
+		set('springCloudVersion', "2022.0.0-RC2")
+	}
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'org.graalvm.buildtools.native'
+	apply plugin: 'java'
+	sourceCompatibility = '17'
+
+	dependencyManagement {
+		imports {
+			mavenBom "com.azure.spring:spring-cloud-azure-dependencies:${springCloudAzureVersion}"
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+	tasks.named('processAot') {
+		systemProperty "debug", "true"
+	}
+	tasks.named('nativeCompile') {
+
+	}
+	graalvmNative {
+		binaries {
+			main {
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.core.status.StatusBase')
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.core.status.InfoStatus')
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.classic.Logger')
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.core.util.StatusPrinter')
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.core.util.Loader')
+//			buildArgs.add('--trace-class-initialization=ch.qos.logback.classic.Level')
+				buildArgs.add('--trace-class-initialization=ch.qos.logback.core.status.StatusBase,ch.qos.logback.core.status.InfoStatus,ch.qos.logback.classic.Logger,ch.qos.logback.core.util.StatusPrinter,ch.qos.logback.core.util.Loader,ch.qos.logback.classic.Level')
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+

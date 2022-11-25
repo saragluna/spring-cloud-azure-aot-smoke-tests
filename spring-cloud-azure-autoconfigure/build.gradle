@@ -1,0 +1,12 @@
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-actuator'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-appconfiguration'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-cosmos'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-eventhubs'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-servicebus'
+	implementation 'com.azure.spring:spring-cloud-azure-starter-storage'
+  	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+

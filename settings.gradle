@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'spring-cloud-azure-aot-smoke-tests'
+
+include 'spring-cloud-azure-stream-binder-eventhubs-record'
+include 'spring-cloud-azure-stream-binder-eventhubs-manual'
+include 'spring-cloud-azure-stream-binder-servicebus-queue'
+include 'spring-cloud-azure-autoconfigure'
