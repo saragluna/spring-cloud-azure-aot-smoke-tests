@@ -41,7 +41,7 @@ subprojects {
 		useJUnitPlatform()
 	}
 	tasks.named('processAot') {
-		systemProperty "debug", "true"
+		systemProperty "debug", "false"
 	}
 	tasks.named('nativeCompile') {
 

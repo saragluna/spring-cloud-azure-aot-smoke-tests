@@ -13,10 +13,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Configuration
-public class EventHubBinderRecordModeConfiguration {
+public class ServiceBusQueueBinderConfiguration {
 
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(EventHubBinderRecordModeConfiguration.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(ServiceBusQueueBinderConfiguration.class);
 
 
     @Bean
@@ -27,20 +27,20 @@ public class EventHubBinderRecordModeConfiguration {
     @Bean
     Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
         return () -> many.asFlux()
-                .doOnNext(m -> LOGGER.info("EventHubBinderRecordMode: Manually sending message {}", m.getPayload()))
-                .doOnError(t -> LOGGER.error("EventHubBinderRecordMode: Error encountered", t));
+                .doOnNext(m -> LOGGER.info("ServiceBusQueueBinder: Manually sending message {}", m.getPayload()))
+                .doOnError(t -> LOGGER.error("ServiceBusQueueBinder: Error encountered", t));
     }
 
     @Bean
     Consumer<Message<String>> consume() {
         return message -> {
-            LOGGER.info("EventHubBinderRecordMode: New message received: '{}'", message.getPayload());
+            LOGGER.info("ServiceBusQueueBinder: New message received: '{}'", message.getPayload());
         };
     }
 
     @ServiceActivator(inputChannel = "errorChannel")
     public void processError(Message sendFailedMsg) {
-        LOGGER.info("EventHubBinderRecordMode: receive error message: '{}'", sendFailedMsg.getPayload());
+        LOGGER.info("ServiceBusQueueBinder: receive error message: '{}'", sendFailedMsg.getPayload());
     }
 
 }
