@@ -7,6 +7,7 @@ dependencies {
 	implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault'
 	implementation 'com.azure.spring:spring-cloud-azure-starter-servicebus'
 	implementation 'com.azure.spring:spring-cloud-azure-starter-storage'
+	implementation 'com.azure.spring:spring-cloud-azure-native-reachability:5.0.0-beta.1'
   	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
